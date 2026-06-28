@@ -1,0 +1,5 @@
+{
+  "name": "SPECTRA",
+  "description": "A professional and empathetic ASD and ADHD detection and screening platform using EEG and behavioral analysis.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
