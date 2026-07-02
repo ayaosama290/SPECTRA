@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Brain, ArrowLeft, User, Mail, Phone, Lock, UserCircle, Activity, Loader2 } from 'lucide-react';
+import { Brain, ArrowLeft, User, Mail, Phone, Lock, UserCircle, Activity, Loader2, Eye, EyeOff } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import api from '../lib/api';
 
@@ -12,6 +12,8 @@ const Login: React.FC<LoginProps> = ({ onBack }) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -313,14 +315,21 @@ const Login: React.FC<LoginProps> = ({ onBack }) => {
                 <div className="relative">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-anadaa-300" size={18} />
                   <input 
-                    type="password" 
+                    type={showPassword ? "text" : "password"} 
                     required
                     placeholder="••••••••"
-                    className="w-full pl-12 pr-4 py-3 bg-anadaa-50 border border-anadaa-100 rounded-xl focus:ring-2 focus:ring-anadaa-500 focus:border-transparent outline-none transition-all disabled:opacity-50"
+                    className="w-full pl-12 pr-12 py-3 bg-anadaa-50 border border-anadaa-100 rounded-xl focus:ring-2 focus:ring-anadaa-500 focus:border-transparent outline-none transition-all disabled:opacity-50"
                     value={formData.password}
                     onChange={(e) => setFormData({...formData, password: e.target.value})}
                     disabled={loading}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-anadaa-400 hover:text-anadaa-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
               </div>
 
@@ -330,14 +339,21 @@ const Login: React.FC<LoginProps> = ({ onBack }) => {
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-anadaa-300" size={18} />
                     <input 
-                      type="password" 
+                      type={showConfirmPassword ? "text" : "password"} 
                       required
                       placeholder="••••••••"
-                      className="w-full pl-12 pr-4 py-3 bg-anadaa-50 border border-anadaa-100 rounded-xl focus:ring-2 focus:ring-anadaa-500 focus:border-transparent outline-none transition-all disabled:opacity-50"
+                      className="w-full pl-12 pr-12 py-3 bg-anadaa-50 border border-anadaa-100 rounded-xl focus:ring-2 focus:ring-anadaa-500 focus:border-transparent outline-none transition-all disabled:opacity-50"
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
                       disabled={loading}
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-anadaa-400 hover:text-anadaa-600 transition-colors"
+                    >
+                      {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                   </div>
                 </div>
               )}
