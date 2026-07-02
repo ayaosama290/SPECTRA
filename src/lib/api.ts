@@ -9,7 +9,7 @@ const NGROK_URL = 'https://graduation-test-production.up.railway.app';
 // Determine the best base URL
 // We use an empty string for BASE_URL to allows us to specify full paths like /api/... in our calls
 // This is more reliable for the Vite proxy to catch the requests.
-let BASE_URL = '';
+let BASE_URL = isProd ? (VITE_API_URL || NGROK_URL) : '';
 
 const api = axios.create({
   baseURL: BASE_URL,
