@@ -14,7 +14,6 @@ let BASE_URL = isProd ? (VITE_API_URL || NGROK_URL) : '';
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    'ngrok-skip-browser-warning': 'true',
     'Accept': 'application/json'
   }
 });
